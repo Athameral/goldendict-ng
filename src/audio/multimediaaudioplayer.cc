@@ -27,8 +27,9 @@ void MultimediaAudioPlayer::audioOutputChange()
 
 void MultimediaAudioPlayer::onPlayEnds( const QMediaPlayer::MediaStatus & status )
 {
-  if ( status == QMediaPlayer::EndOfMedia )
-    {
+  qDebug() << "media status changed";
+  if ( status == QMediaPlayer::EndOfMedia ) {
+    qDebug() << "media eof";
     player.setAudioOutput( nullptr );
   }
 }
