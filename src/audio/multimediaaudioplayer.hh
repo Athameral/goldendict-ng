@@ -25,6 +25,7 @@ public:
 private slots:
   void onMediaPlayerError();
   void audioOutputChange();
+  void onPlayEnds( const QMediaPlayer::MediaStatus & status );
 
 
 private:
