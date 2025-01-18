@@ -5,16 +5,16 @@ env:
   versionSuffix: ${{ !contains(github.ref_name,'master') && 'alpha' || 'Release' }}
 on: 
   workflow_dispatch:
-  push:
-    branches:
-      - dev
-      - master
-      - experimental
-    paths-ignore:
-      - 'docs/**'
-      - "howto/**"
-      - "*.md"
-      - ".clang-format"
+  # push:
+  #   branches:
+  #     - dev
+  #     - master
+  #     - experimental
+  #   paths-ignore:
+  #     - 'docs/**'
+  #     - "howto/**"
+  #     - "*.md"
+  #     - ".clang-format"
 jobs:
   build_macOS:
     runs-on: ${{ matrix.os }}
