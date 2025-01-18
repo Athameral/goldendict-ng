@@ -17,7 +17,7 @@ MultimediaAudioPlayer::MultimediaAudioPlayer()
 
   connect( &mediaDevices, &QMediaDevices::audioOutputsChanged, this, &MultimediaAudioPlayer::audioOutputChange );
 
-  connect( &player, &QMediaPlayer::mediaStatusChanged, this, &MultimediaAudioPlayer::onPlayEnds);
+  connect( &player, &QMediaPlayer::mediaStatusChanged, this, &MultimediaAudioPlayer::onPlayEnds );
 }
 
 void MultimediaAudioPlayer::audioOutputChange()
@@ -25,9 +25,12 @@ void MultimediaAudioPlayer::audioOutputChange()
   qDebug() << "audio device changed";
 }
 
-void MultimediaAudioPlayer::onPlayEnds()
+void MultimediaAudioPlayer::onPlayEnds( const QMediaPlayer::MediaStatus & status )
 {
-  player.setAudioOutput( nullptr );
+  if ( status == QMediaPlayer::EndOfMedia )
+    {
+    player.setAudioOutput( nullptr );
+  }
 }
 
 QString MultimediaAudioPlayer::play( const char * data, int size )
