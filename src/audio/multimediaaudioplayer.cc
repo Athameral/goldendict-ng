@@ -16,7 +16,7 @@ MultimediaAudioPlayer::MultimediaAudioPlayer()
 
   connect( &player, &QMediaPlayer::errorChanged, this, &MultimediaAudioPlayer::onMediaPlayerError );
 
-  connect( &mediaDevices, &QMediaDevices::audioOutputsChanged, this, &MultimediaAudioPlayer::audioOutputChange );
+  // connect( &mediaDevices, &QMediaDevices::audioOutputsChanged, this, &MultimediaAudioPlayer::audioOutputChange );
 
   connect( &player, &QMediaPlayer::mediaStatusChanged, this, &MultimediaAudioPlayer::onPlayEnds );
 }

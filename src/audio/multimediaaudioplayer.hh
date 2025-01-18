@@ -33,7 +33,7 @@ private:
   QPointer< QBuffer > audioBuffer;
   QMediaPlayer player; ///< Depends on audioBuffer.
   std::unique_ptr<QAudioOutput> audioOutput;
-  QMediaDevices mediaDevices;
+  // QMediaDevices mediaDevices;
 };
 
 #endif // MAKE_QTMULTIMEDIA_PLAYER
