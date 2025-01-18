@@ -5,6 +5,7 @@
 
 #ifdef MAKE_QTMULTIMEDIA_PLAYER
 
+  #include <memory>
   #include "audioplayerinterface.hh"
   #include <QAudioOutput>
   #include <QBuffer>
@@ -31,7 +32,7 @@ private slots:
 private:
   QPointer< QBuffer > audioBuffer;
   QMediaPlayer player; ///< Depends on audioBuffer.
-  QAudioOutput audioOutput;
+  std::unique_ptr<QAudioOutput> audioOutput;
   QMediaDevices mediaDevices;
 };
 

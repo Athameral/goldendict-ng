@@ -1,6 +1,7 @@
 /* This file is (c) 2018 Igor Kushnir <igorkuo@gmail.com>
  * Part of GoldenDict. Licensed under GPLv3 or later, see the LICENSE file */
 
+#include <qdebug.h>
 #ifdef MAKE_QTMULTIMEDIA_PLAYER
 
   #include <QByteArray>
@@ -11,7 +12,7 @@
 
 MultimediaAudioPlayer::MultimediaAudioPlayer()
 {
-  player.setAudioOutput( &audioOutput );
+  // player.setAudioOutput( audioOutput );
 
   connect( &player, &QMediaPlayer::errorChanged, this, &MultimediaAudioPlayer::onMediaPlayerError );
 
@@ -30,6 +31,8 @@ void MultimediaAudioPlayer::onPlayEnds( const QMediaPlayer::MediaStatus & status
   qDebug() << "media status changed";
   if ( status == QMediaPlayer::EndOfMedia ) {
     qDebug() << "media eof";
+    audioOutput = nullptr;
+    qDebug() << "set audioOutput to nullptr";
     player.setAudioOutput( nullptr );
   }
 }
@@ -44,8 +47,9 @@ QString MultimediaAudioPlayer::play( const char * data, int size )
   }
   player.setSourceDevice( audioBuffer );
 
-  audioOutput.setDevice( QMediaDevices::defaultAudioOutput() );
-  player.setAudioOutput( &audioOutput );
+  audioOutput = std::make_unique<QAudioOutput>();
+  // audioOutput->setDevice( QMediaDevices::defaultAudioOutput() );
+  player.setAudioOutput( audioOutput.get() );
 
   player.play();
   return {};
