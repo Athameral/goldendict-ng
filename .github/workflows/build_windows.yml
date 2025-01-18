@@ -170,7 +170,7 @@ jobs:
           path: ./changelog.txt
 
   publish:
-    needs: [build_macOS, build_Windows, generate_other_staffs]
+    needs: [build_Windows, generate_other_staffs]
     runs-on: ubuntu-24.04
     env:
         newTag: ${{ needs.generate_other_staffs.outputs.newTag }}
